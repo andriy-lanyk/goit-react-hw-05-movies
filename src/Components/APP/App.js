@@ -1,17 +1,17 @@
 import { Switch, Route, Redirect } from "react-router-dom";
-import fetchFilms from "../FetchFilms";
+import AppBar from "../AppBar";
+import HomeView from "../views/HomeView";
+import FilmView from "../views/FilmView";
+import FilmDetailsView from "../views/FilmDetailsView";
 
 function App() {
-  function getFilms() {
-    return fetchFilms().then((response) => console.log(response));
-  }
-
   return (
     <>
+      <AppBar />
       <Switch>
-        <Route path="/" exact />
-        <Route path="/about" />
-        <Route path="/contact" />
+        <Route path="/" exact component={HomeView} />
+        <Route path="/movies" exact component={FilmView} />
+        <Route path="/movies/:movieId" exact component={FilmDetailsView} />
         <Redirect to="/" />
       </Switch>
     </>
