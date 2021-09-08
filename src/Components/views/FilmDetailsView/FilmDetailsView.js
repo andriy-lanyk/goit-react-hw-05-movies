@@ -59,7 +59,7 @@ function FilmDetailsView() {
               </div>
               <div>
                 <h2>{film.original_title ?? film.original_name}</h2>
-                <p>User score: {film.vote_count}%</p>
+                <p>User score: {film.popularity}%</p>
                 <h3>Overview</h3>
                 <p>{film.overview}</p>
                 <h3>Genres</h3>
