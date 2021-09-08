@@ -24,4 +24,16 @@ function fetchFilmReviews(id) {
   ).then((res) => res.json());
 }
 
-export { fetchTrendingFilms, fetchFilmById, fetchFilmCast, fetchFilmReviews };
+function fetchSearchFilms(query) {
+  return fetch(
+    `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${query}&page=1&include_adult=false`
+  ).then((response) => response.json());
+}
+
+export {
+  fetchTrendingFilms,
+  fetchFilmById,
+  fetchFilmCast,
+  fetchFilmReviews,
+  fetchSearchFilms,
+};

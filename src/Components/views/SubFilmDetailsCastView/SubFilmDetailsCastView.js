@@ -1,17 +1,47 @@
 import { useParams } from "react-router";
 import { useState, useEffect } from "react/cjs/react.development";
-import { fetchFilmReviews } from "../../FetchFilms/FetchFilms";
+import { fetchFilmCast } from "../../FetchFilms/FetchFilms";
+import styles from "./SubFilmDetailsCastView.module.css";
 
-export default function SubFilmDetailsReviewsView({ filmId }) {
-  const [reviews, setReviews] = useState(null);
-  console.log("reviews: ", reviews);
+export default function SubFilmDetailsCastView() {
+  const [actors, setActors] = useState(null);
+  const [error, setError] = useState(null);
 
-  const params = useParams();
-  console.log("params: ", params);
+  const { moviesId } = useParams();
 
   useEffect(() => {
-    fetchFilmReviews(filmId).then(setReviews);
-  }, [filmId]);
+    fetchFilmCast(moviesId).then((response) => {
+      console.log("response: ", response);
+      if (response.cast.length === 0) {
+        setError("We don`t have any cast for this movie.");
+        return;
+      }
+      setActors(response.cast);
+    });
+  }, [moviesId]);
 
-  return <div>Описание фильма</div>;
+  return (
+    <>
+      <p>{error}</p>
+      <ul className={styles.castList}>
+        {actors &&
+          actors.map((actor) => (
+            <li key={actor.cast_id}>
+              {actor.profile_path ? (
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`}
+                  alt={actor.name}
+                />
+              ) : (
+                <div>
+                  <p className={styles.thumb}>No Photo</p>
+                </div>
+              )}
+              <p>{actor.name}</p>
+              <p>Character: {actor.character}</p>
+            </li>
+          ))}
+      </ul>
+    </>
+  );
 }
