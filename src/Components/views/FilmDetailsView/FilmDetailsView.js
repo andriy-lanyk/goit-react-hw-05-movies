@@ -7,6 +7,7 @@ import {
   useLocation,
 } from "react-router";
 import { fetchFilmById } from "../../FetchFilms/FetchFilms";
+import styles from "./FilmDetailsView.module.css";
 
 const SubFilmDetailsCastView = lazy(() =>
   import(
@@ -37,33 +38,38 @@ function FilmDetailsView() {
   };
 
   return (
-    <>
-      <button onClick={goToBack} aria-label="Go back">
+    <div className={styles.container}>
+      <button
+        className={styles.buttonBack}
+        onClick={goToBack}
+        aria-label="Go back"
+      >
         <span>Back</span>
       </button>
 
-      <div>
+      <>
         {film && (
           <>
-            <div>
-              <img
-                src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
-                alt={film.original_title ?? film.original_name}
-              />
+            <div className={styles.filmContainer}>
+              <div className={styles.filmImage}>
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
+                  alt={film.original_title ?? film.original_name}
+                />
+              </div>
+              <div>
+                <h2>{film.original_title ?? film.original_name}</h2>
+                <p>User score: {film.vote_count}%</p>
+                <h3>Overview</h3>
+                <p>{film.overview}</p>
+                <h3>Genres</h3>
+                <ul>
+                  {film?.genres?.map((genre) => (
+                    <li key={genre.id}>{genre.name}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
-            <div>
-              <h2>{film.original_title ?? film.original_name}</h2>
-              <p>User score: {film.vote_count}%</p>
-              <h3>Overview</h3>
-              <p>{film.overview}</p>
-              <h3>Genres</h3>
-              <ul>
-                {film?.genres?.map((genre) => (
-                  <li key={genre.id}>{genre.name}</li>
-                ))}
-              </ul>
-            </div>
-
             <div>
               <h3>Additional information</h3>
               <ul>
@@ -105,8 +111,8 @@ function FilmDetailsView() {
             <SubFilmDetailsReviewsView />
           </Route>
         </Suspense>
-      </div>
-    </>
+      </>
+    </div>
   );
 }
 

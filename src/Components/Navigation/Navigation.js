@@ -12,7 +12,7 @@ const Navigation = () => (
       Home
     </NavLink>
     <NavLink
-      to="movies"
+      to="/movies"
       className={styles.link}
       activeClassName={styles.activeLink}
     >
