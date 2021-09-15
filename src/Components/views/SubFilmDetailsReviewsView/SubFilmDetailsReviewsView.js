@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import { useState, useEffect } from "react/cjs/react.development";
+import { useState, useEffect } from "react";
 import { fetchFilmReviews } from "../../FetchFilms/FetchFilms";
 
 export default function SubFilmDetailsReviewsView() {

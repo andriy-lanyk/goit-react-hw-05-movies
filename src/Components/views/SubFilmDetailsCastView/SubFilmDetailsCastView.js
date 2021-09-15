@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import { useState, useEffect } from "react/cjs/react.development";
+import { useState, useEffect } from "react";
 import { fetchFilmCast } from "../../FetchFilms/FetchFilms";
 import styles from "./SubFilmDetailsCastView.module.css";
 
@@ -11,7 +11,6 @@ export default function SubFilmDetailsCastView() {
 
   useEffect(() => {
     fetchFilmCast(moviesId).then((response) => {
-      console.log("response: ", response);
       if (response.cast.length === 0) {
         setError("We don`t have any cast for this movie.");
         return;
