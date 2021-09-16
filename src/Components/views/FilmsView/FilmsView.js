@@ -1,6 +1,6 @@
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { fetchSearchFilms } from "../../FetchFilms/FetchFilms";
+import { fetchSearchFilms } from "../../../FetchFilms/FetchFilms";
 import FilmSearch from "../FilmSearch";
 
 function FilmsView() {

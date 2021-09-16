@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { fetchTrendingFilms } from "../../FetchFilms/FetchFilms";
+import { fetchTrendingFilms } from "../../../FetchFilms/FetchFilms";
 import styles from "./HomeView.module.css";
 
 function HomeView() {

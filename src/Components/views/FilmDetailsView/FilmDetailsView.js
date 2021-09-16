@@ -6,7 +6,7 @@ import {
   useHistory,
   useLocation,
 } from "react-router";
-import { fetchFilmById } from "../../FetchFilms/FetchFilms";
+import { fetchFilmById } from "../../../FetchFilms/FetchFilms";
 import styles from "./FilmDetailsView.module.css";
 
 const SubFilmDetailsCastView = lazy(() =>
